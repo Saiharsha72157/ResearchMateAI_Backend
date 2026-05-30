@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
@@ -19,6 +19,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 from services.datasets import DatasetService
+from services.auth import get_current_user
 from routes import paraphrase_router
 
 load_dotenv()
@@ -93,7 +94,8 @@ def health_check():
 
 # AI Title Generation Route (retains existing functionality)
 @app.post("/generate-titles")
-def generate_titles(data: ResearchRequest):
+def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
+
     # Fallback generator in case of exceptions or empty results
     def get_fallback_projects(dept: str, dom: str):
         fallbacks = {
@@ -472,7 +474,8 @@ def analyze_dataframe(df: pd.DataFrame, file_name: str, source: str = "csv_uploa
 
 # CSV File analysis endpoint
 @app.post("/analyze-csv")
-async def analyze_csv(file: UploadFile = File(...)):
+async def analyze_csv(file: UploadFile = File(...), current_user: Dict[str, Any] = Depends(get_current_user)):
+
     # Validate file type
     if not file.filename.lower().endswith('.csv'):
         raise HTTPException(
@@ -515,7 +518,7 @@ async def analyze_csv(file: UploadFile = File(...)):
 
 # Manual data analysis endpoint (Bonus!)
 @app.post("/analyze-manual-data")
-def analyze_manual_data(data: ManualDataRequest):
+def analyze_manual_data(data: ManualDataRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
     if not data.column_names or not data.rows:
         raise HTTPException(
             status_code=400,
@@ -548,7 +551,7 @@ def analyze_manual_data(data: ManualDataRequest):
 
 # Regenerate comparative grouped bar chart with custom labels
 @app.post("/regenerate-chart")
-def regenerate_chart(data: ChartRegenRequest):
+def regenerate_chart(data: ChartRegenRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
     try:
         fig, ax = plt.subplots(figsize=(10, 6))
         groups = data.groups
@@ -608,7 +611,8 @@ def regenerate_chart(data: ChartRegenRequest):
 
 # Dataset Search Route
 @app.get("/search-datasets")
-def search_datasets(query: Optional[str] = "ai", provider: Optional[str] = "kaggle", page: Optional[int] = 1, limit: Optional[int] = 20):
+def search_datasets(query: Optional[str] = "ai", provider: Optional[str] = "kaggle", page: Optional[int] = 1, limit: Optional[int] = 20, current_user: Dict[str, Any] = Depends(get_current_user)):
+
     if not query:
         raise HTTPException(status_code=400, detail="Query parameter cannot be empty.")
     try:
