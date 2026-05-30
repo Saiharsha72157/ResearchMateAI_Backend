@@ -14,6 +14,10 @@ matplotlib.use('Agg')  # Headless matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
 from services.datasets import DatasetService
 from routes import paraphrase_router
 
@@ -35,14 +39,31 @@ app.add_middleware(
 # Include modular local routers
 app.include_router(paraphrase_router)
 
+@app.get("/")
+def health_check():
+    return {
+        "status": "healthy",
+        "service": "running"
+    }
+
 # Groq Client setup (retains Title Generation capabilities)
+groq_api_key = os.getenv("GROQ_API_KEY")
+if groq_api_key:
+    logger.info("Groq API key loaded successfully.")
+else:
+    logger.warning("Groq API key is missing from environment variables.")
+
 try:
-    client = Groq(
-        api_key=os.getenv("GROQ_API_KEY")
-    )
+    if groq_api_key:
+        client = Groq(api_key=groq_api_key)
+        logger.info("Groq client initialized successfully.")
+    else:
+        client = None
 except Exception as e:
-    print(f"[Backend] Groq API Initialization Warning: {e}")
+    logger.error(f"[Backend] Groq API Initialization Warning: {e}", exc_info=True)
     client = None
+
+logger.info("Application startup completed.")
 
 # Request Models
 class ResearchRequest(BaseModel):

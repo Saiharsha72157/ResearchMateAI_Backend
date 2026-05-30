@@ -35,10 +35,20 @@ class ParaphraseEngine:
         self.writing_analyzer = WritingAnalyzer()
         
         # Initialize Groq client securely
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if groq_api_key:
+            print("[ParaphraseEngine] Info: Groq API key loaded.")
+        else:
+            print("[ParaphraseEngine] Warning: Groq API key is missing from environment variables.")
+            
         try:
-            self.groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+            if groq_api_key:
+                self.groq_client = Groq(api_key=groq_api_key)
+                print("[ParaphraseEngine] Info: Groq client initialized successfully.")
+            else:
+                self.groq_client = None
         except Exception as e:
-            print(f"[ParaphraseEngine] Warning: Groq API key is missing or invalid: {e}")
+            print(f"[ParaphraseEngine] Error: Groq API Initialization failed: {e}")
             self.groq_client = None
 
         # Style guidelines mapping to specific writing modes

@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Environment configurations (contains keys)
+.env
+
+# Local state database files
+history.json
