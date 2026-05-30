@@ -109,7 +109,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "Multimodal Transformers are best because self-attention integrates diverse modalities natively. SHAP and LIME are best because they generate mathematical feature attribution scores to guarantee transparency."
                 },
                 {
-                    "title": "AI-Powered Traffic Prediction System Using Deep Learning",
+                    "title": "Deep Learning-Based Spatial-Temporal Framework for Real-Time Urban Traffic Flow Prediction",
                     "difficulty": "Medium",
                     "algorithms": ["LSTM", "CNN", "Random Forest"],
                     "summary": "A city-scale predictive grid that leverages neural structures to anticipate traffic congestions and compute dynamic navigation maps.",
@@ -117,7 +117,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "LSTMs are best because they capture long-range chronological traffic correlations, and CNNs are best if spatial network relationships are represented as 2D spatial matrices."
                 },
                 {
-                    "title": "Autonomous Robotics Pathfinding using Deep Q-Networks",
+                    "title": "Autonomous Robotics Pathfinding in Obstacle-Heavy Environments Using Deep Q-Networks",
                     "difficulty": "Hard",
                     "algorithms": ["DQN", "A*", "DDPG"],
                     "summary": "Implement a self-learning navigation loop where a robot agent optimizes continuous routing through obstacle-heavy environments.",
@@ -125,7 +125,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "Deep Q-Networks (DQN) are best because they project raw pixel inputs directly into optimal movement policies without requiring manual spatial modeling."
                 },
                 {
-                    "title": "AI-Driven Patient Monitoring and Diagnostic Assistant",
+                    "title": "An AI-Driven Patient Monitoring Framework for Real-Time Cardiovascular Diagnostic Assistance",
                     "difficulty": "Medium",
                     "algorithms": ["ResNet", "Random Forest", "XGBoost"],
                     "summary": "Continuously evaluate clinical patient parameters to proactively detect and report cardiovascular anomalies.",
@@ -133,7 +133,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "ResNet is best for robust clinical image classification, and XGBoost operates optimally on structured tabular clinical vitals to identify anomalies."
                 },
                 {
-                    "title": "Smart Home Automation with IoT and Machine Learning",
+                    "title": "Smart Home Energy Conservation Controller Using IoT Sensor Data and Clustering",
                     "difficulty": "Easy",
                     "algorithms": ["Decision Trees", "K-Means", "Linear Regression"],
                     "summary": "An intelligent controller that learns household behavior patterns to maximize energy conservation in cooling systems.",
@@ -151,7 +151,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "Proximal Policy Optimization (PPO) is best because it features clipped objective targets, preventing destructive model divergence during robot control training."
                 },
                 {
-                    "title": "Predictive Maintenance System for Industrial Equipment",
+                    "title": "Deep Learning-Based Predictive Maintenance System for Industrial Turbofan Degradation Detection",
                     "difficulty": "Medium",
                     "algorithms": ["SVM", "Gradient Boosting", "Neural Networks"],
                     "summary": "Analyze high-frequency vibrational readings to anticipate thermal anomalies and structural degradation in turbines.",
@@ -159,7 +159,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "Gradient Boosting (XGBoost/LightGBM) is best because it handles highly skewed industrial sensor data and creates precise predictive anomaly targets."
                 },
                 {
-                    "title": "Real-Time Sentiment Analysis for Social Media Platforms",
+                    "title": "Bidirectional Transformer Architecture for Real-Time Sentiment Analysis in Social Telemetry Streams",
                     "difficulty": "Hard",
                     "algorithms": ["BERT", "Transformer", "RNN"],
                     "summary": "Capture complex emotional transitions and semantic nuances in stream-based social conversations.",
@@ -167,7 +167,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                     "best_algorithms_explanation": "BERT is best because its bidirectional attention models complex sentence semantics, capturing implicit context, slang, and user sarcasm perfectly."
                 },
                 {
-                    "title": "Customer Churn Prediction using Ensemble Classifiers",
+                    "title": "Ensemble-Based Classifier Framework for Real-Time Customer Churn Prediction in Telecommunication Industries",
                     "difficulty": "Easy",
                     "algorithms": ["Random Forest", "Logistic Regression", "XGBoost"],
                     "summary": "Predict user churn probabilities based on transaction frequencies and historical user profiles.",
@@ -179,7 +179,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
         
         default_projects = [
             {
-                "title": f"Next-Gen {dom} framework for {dept} Applications",
+                "title": f"A Deep Learning-Based {dom} Integration Framework for Secure {dept} Architectures",
                 "difficulty": "Medium",
                 "algorithms": ["Random Forest", "XGBoost", "K-Means"],
                 "summary": f"Develop an advanced data-driven framework leveraging state-of-the-art algorithms within the {dom} domain.",
@@ -187,7 +187,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                 "best_algorithms_explanation": "Random Forest and XGBoost are best because they offer high accuracy and robust feature importances for structured metrics."
             },
             {
-                "title": f"Automated Anomaly Detection in {dom} Environments",
+                "title": f"Real-Time Anomaly Detection in Heterogeneous {dom} Industrial Edge Networks",
                 "difficulty": "Hard",
                 "algorithms": ["Isolation Forest", "Autoencoders", "SVM"],
                 "summary": "A real-time monitoring tool designed to capture micro-anomalies and out-of-distribution patterns.",
@@ -195,7 +195,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                 "best_algorithms_explanation": "Autoencoders are best because they learn standard patterns unsupervised and isolate outliers based on high reconstruction error."
             },
             {
-                "title": f"Predictive Modeling and Optimization for {dept} Systems",
+                "title": f"Predictive Modeling and Performance Optimization of High-Throughput {dept} Architectures",
                 "difficulty": "Medium",
                 "algorithms": ["Linear Regression", "Gradient Boosting", "KNN"],
                 "summary": f"Optimize the performance and throughput of system architectures using statistical modeling.",
@@ -203,7 +203,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                 "best_algorithms_explanation": "Gradient Boosting is best for capturing complex, non-linear relationships between hardware parameters."
             },
             {
-                "title": f"Edge-Computing Optimization for {dom}-Enabled IoT Nodes",
+                "title": f"Deep Learning Model Quantization for Resource-Constrained {dom} Edge IoT Nodes",
                 "difficulty": "Hard",
                 "algorithms": ["Quantized CNN", "SVM", "Decision Trees"],
                 "summary": "Deploy deep learning models on low-power edge microcontrollers through post-training weight quantization.",
@@ -211,7 +211,7 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
                 "best_algorithms_explanation": "Quantized CNNs are best because they compress the weight parameters, fitting model parameters on edge hardware storage."
             },
             {
-                "title": f"Statistical Analysis and Clustering of {dom} Parameters",
+                "title": f"Dimensionality Reduction and Unsupervised Clustering of High-Dimensional {dom} Parameter Sets",
                 "difficulty": "Easy",
                 "algorithms": ["K-Means", "PCA", "Hierarchical Clustering"],
                 "summary": f"Explore and categorize dynamic metrics across multiple {dept} domains to discover hidden archetypes.",
@@ -227,24 +227,33 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
     
     try:
         prompt = f"""
-        Generate exactly 5 innovative, highly professional, and realistic academic research project titles and detailed plans for:
+        Generate exactly 5 highly professional, innovative, and realistic academic research project plans for:
 
         Department: {data.department}
         Domain: {data.domain}
 
+        Your target is to generate exactly 5 alternatives ranked from strongest (most mathematically/technically robust and original) to weakest.
+
         For each project, generate:
-        1. "title": A highly formal, academic, and IEEE-standard research paper title (do not use quotes). The title must be framed exactly like a publication in an IEEE Transactions or IEEE Conference journal. Avoid casual or generic phrases. Use formal academic structures such as "A [Mechanism/Framework] for [Goal/Application] Using [Algorithms]", "Performance Analysis of [Approach] in [Problem Domain]", or "Deep Learning-Based [System] for [Task]: A Comparative Evaluation".
+        1. "title": A highly formal, academic, and IEEE-standard publication title (do not use quotes). 
+           Strictly adhere to the following IEEE Guidelines:
+           - Use Title Case (capitalize all nouns, verbs, pronouns, adjectives, adverbs, and major words).
+           - Must be suitable for IEEE conferences and journals (publication-ready, precise, and highly technical).
+           - Word count must be strictly between 8 and 18 words.
+           - Focus entirely on the core technological contribution, methodology, and application.
+           - Avoid vague, casual, or clickbait wording.
+           - Avoid introductory fillers such as "A Study on", "Research on", "Analysis of", "Investigation into" unless academically necessary.
         2. "difficulty": A difficulty level ('Easy', 'Medium', or 'Hard').
         3. "algorithms": A list of 2-3 suggested machine learning or data science algorithms (e.g., ['LSTM', 'CNN', 'Random Forest']).
         4. "summary": A clear, academically robust, and compelling summary of what the project accomplishes.
-        5. "dataset": What dataset to use for this project (specify professional public datasets like Kaggle, UCI, PhysioNet, ImageNet, PeMS-SF, etc.).
+        5. "dataset": What dataset to use for this project (specify professional public datasets like Kaggle, UCI, PhysioNet, ImageNet, etc.).
         6. "best_algorithms_explanation": Tell me what algorithms are best and why they are best for this specific project.
 
         Return ONLY a valid JSON object matching this schema (do not include any additional text or markdown formatting):
         {{
             "projects": [
                 {{
-                    "title": "compelling formal IEEE project title",
+                    "title": "Formal Title in Title Case (8 to 18 Words)",
                     "difficulty": "Easy" | "Medium" | "Hard",
                     "algorithms": ["algorithm1", "algorithm2"],
                     "summary": "detailed summary here...",
