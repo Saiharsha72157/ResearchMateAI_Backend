@@ -227,24 +227,24 @@ def generate_titles(data: ResearchRequest, current_user: Dict[str, Any] = Depend
     
     try:
         prompt = f"""
-        Generate exactly 5 innovative, realistic research project titles and detailed plans for:
+        Generate exactly 5 innovative, highly professional, and realistic academic research project titles and detailed plans for:
 
         Department: {data.department}
         Domain: {data.domain}
 
         For each project, generate:
-        1. "title": A compelling, innovative title (do not use quotes).
+        1. "title": A highly formal, academic, and IEEE-standard research paper title (do not use quotes). The title must be framed exactly like a publication in an IEEE Transactions or IEEE Conference journal. Avoid casual or generic phrases. Use formal academic structures such as "A [Mechanism/Framework] for [Goal/Application] Using [Algorithms]", "Performance Analysis of [Approach] in [Problem Domain]", or "Deep Learning-Based [System] for [Task]: A Comparative Evaluation".
         2. "difficulty": A difficulty level ('Easy', 'Medium', or 'Hard').
         3. "algorithms": A list of 2-3 suggested machine learning or data science algorithms (e.g., ['LSTM', 'CNN', 'Random Forest']).
-        4. "summary": A clear, compelling summary of what the project accomplishes.
-        5. "dataset": What dataset to use for this project (e.g., specific public datasets or types of data).
+        4. "summary": A clear, academically robust, and compelling summary of what the project accomplishes.
+        5. "dataset": What dataset to use for this project (specify professional public datasets like Kaggle, UCI, PhysioNet, ImageNet, PeMS-SF, etc.).
         6. "best_algorithms_explanation": Tell me what algorithms are best and why they are best for this specific project.
 
         Return ONLY a valid JSON object matching this schema (do not include any additional text or markdown formatting):
         {{
             "projects": [
                 {{
-                    "title": "compelling project title",
+                    "title": "compelling formal IEEE project title",
                     "difficulty": "Easy" | "Medium" | "Hard",
                     "algorithms": ["algorithm1", "algorithm2"],
                     "summary": "detailed summary here...",
