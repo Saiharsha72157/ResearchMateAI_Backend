@@ -30,15 +30,13 @@ def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] = Secur
         "role": str
     }
     """
-    # 1. Graceful bypass in development if JWT Secret is not set
+    # 1. Strict JWT Secret Configuration Check
     if not SUPABASE_JWT_SECRET:
-        logger.info("[AUTH] JWT secret not set. Bypassing authentication for request.")
-        return {
-            "user_id": "dev_bypass_id",
-            "email": "dev_bypass@example.com",
-            "role": "authenticated",
-            "is_dev": True
-        }
+        logger.error("[AUTH] Critical configuration error: SUPABASE_JWT_SECRET is missing.")
+        raise HTTPException(
+            status_code=500,
+            detail="Server configuration error. Authentication cannot be processed."
+        )
 
     # 2. Require credentials if Secret is configured
     if not credentials:

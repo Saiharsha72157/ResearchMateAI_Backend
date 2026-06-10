@@ -618,6 +618,79 @@ def regenerate_chart(data: ChartRegenRequest, current_user: Dict[str, Any] = Dep
         print(f"[Backend] Error regenerating chart: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# --- LLM API Endpoints ---
+class SummaryRequest(BaseModel):
+    abstract: str
+    mode: str
+
+class InsightsRequest(BaseModel):
+    text: str
+
+class LiteratureReviewRequest(BaseModel):
+    abstracts_text: str
+
+@app.post("/generate-summary")
+def generate_summary(data: SummaryRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
+    if not client:
+        raise HTTPException(status_code=500, detail="Groq API is not configured on the backend.")
+    prompt = f"You are an expert academic researcher. Summarize the following research abstract in a {data.mode} format. \n\nAbstract: {data.abstract}"
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "text"}
+        )
+        return {"text": response.choices[0].message.content or "No response generated."}
+    except Exception as e:
+        logger.error(f"[Backend] Groq summary error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate summary.")
+
+@app.post("/generate-insights")
+def generate_insights(data: InsightsRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
+    if not client:
+        raise HTTPException(status_code=500, detail="Groq API is not configured on the backend.")
+    prompt = f"""Analyze the following research text and extract key insights. Return ONLY a valid JSON object matching exactly this structure (no markdown, no quotes):
+  {{
+    "findings": ["finding 1", "finding 2"],
+    "contributions": ["contribution 1", "contribution 2"],
+    "novelIdeas": ["idea 1", "idea 2"]
+  }}
+  
+  Text: {data.text}"""
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "json_object"}
+        )
+        import json
+        text = response.choices[0].message.content
+        try:
+            return json.loads(text)
+        except:
+            import re
+            clean_text = re.sub(r'```json\n|\n```', '', text)
+            return json.loads(clean_text)
+    except Exception as e:
+        logger.error(f"[Backend] Groq insights error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate insights.")
+
+@app.post("/generate-literature-review")
+def generate_literature_review(data: LiteratureReviewRequest, current_user: Dict[str, Any] = Depends(get_current_user)):
+    if not client:
+        raise HTTPException(status_code=500, detail="Groq API is not configured on the backend.")
+    prompt = f"Act as an expert academic researcher. Write a concise literature review based on the following papers:\n\n{data.abstracts_text}\n\nInclude a synthesis of their common themes, methodologies, and identify any potential research gaps."
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "text"}
+        )
+        return {"text": response.choices[0].message.content or "No response generated."}
+    except Exception as e:
+        logger.error(f"[Backend] Groq lit review error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate literature review.")
+
 # Dataset Search Route
 @app.get("/search-datasets")
 def search_datasets(query: Optional[str] = "ai", provider: Optional[str] = "kaggle", page: Optional[int] = 1, limit: Optional[int] = 20, current_user: Dict[str, Any] = Depends(get_current_user)):
